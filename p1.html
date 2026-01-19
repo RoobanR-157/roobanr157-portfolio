@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rooban R | Frontend Developer</title>
+<style>
+/* GENERAL */
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;transition:all 0.3s}
+body{background:#0b0b16;color:#fff;scroll-behavior:smooth;line-height:1.7}
+
+/* DARK & LIGHT THEMES */
+body.light{background:#f4f4f8;color:#0b0b16}
+body.light nav{background:#fff}
+body.light nav h2{color:#c77dff}
+body.light nav a{color:#0b0b16}
+body.light .home img{border:4px solid #c77dff}
+body.light .btn{background:#c77dff;color:#fff}
+body.light .card, body.light .skill, body.light .qr-card{background:#e0e0e0;color:#0b0b16}
+body.light footer{background:#fff;color:#0b0b16}
+
+/* NAV */
+nav{
+  position:fixed;top:0;width:100%;
+  background:#0f1025;padding:15px 60px;
+  display:flex;justify-content:space-between;align-items:center;z-index:1000
+}
+nav h2{color:#c77dff}
+nav ul{display:flex;gap:25px;list-style:none}
+nav a{color:#fff;text-decoration:none;font-weight:500;transition:0.3s}
+#theme-toggle{font-size:20px;cursor:pointer;margin-left:20px;transition:0.3s}
+
+/* SECTIONS */
+section{padding:120px 60px;opacity:0;transform:translateY(40px);transition:all 0.8s ease-out}
+section.visible{opacity:1;transform:translateY(0)}
+h2{text-align:center;color:#c77dff;margin-bottom:30px}
+
+/* HOME */
+.home{
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:1.2fr 1fr;
+  align-items:center;
+  gap:60px;
+}
+.home-content{
+  max-width:560px;
+}
+.home-content h1, 
+.home-content h3, 
+.home-content p, 
+.home-content .btn {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 1s forwards;
+}
+.home-content h1 { animation-delay: 0.3s; }
+.home-content h3 { animation-delay: 0.6s; }
+.home-content p:nth-of-type(1) { animation-delay: 0.9s; }
+.home-content p:nth-of-type(2) { animation-delay: 1.2s; }
+.home-content .btn { animation-delay: 1.5s; }
+
+.home img{
+  width:240px;
+  border-radius:22px;
+  border:4px solid #c77dff;
+  justify-self:end;
+  opacity:0;
+  transform: scale(0.85);
+  animation: fadeZoom 1.2s forwards 1.8s;
+}
+
+/* BUTTON */
+.btn{
+  display:inline-block;
+  padding:12px 30px;
+  background:#c77dff;color:#000;
+  border-radius:25px;
+  text-decoration:none;
+  margin-top:22px;
+  transition:0.3s;
+}
+.btn:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 18px #c77dff;
+}
+
+/* CARDS */
+.card{
+  background:#15172e;
+  padding:25px;
+  border-radius:15px;
+  margin-bottom:20px;
+  opacity:0;
+  transform:translateY(30px);
+  animation: fadeUp 0.8s forwards;
+}
+
+/* SKILLS */
+.skills{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:15px;
+}
+.skill{
+  background:#1b1d3a;
+  padding:15px;
+  border-radius:10px;
+  text-align:center;
+  opacity:0;
+  transform:translateY(20px);
+  animation: fadeUp 0.8s forwards;
+  transition:0.3s;
+}
+.skill:hover{transform:translateY(-6px)}
+
+/* QR */
+.qr-box{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:30px;
+  margin-top:30px;
+}
+.qr-card{
+  background:#15172e;
+  padding:25px;
+  border-radius:15px;
+  text-align:center;
+  opacity:0;
+  transform:translateY(20px);
+  animation: fadeUp 0.8s forwards;
+}
+.qr-card img{
+  width:160px;
+  margin:15px 0;
+  border-radius:10px;
+  background:#fff;
+  padding:10px;
+}
+
+/* FOOTER */
+footer{
+  background:#0f1025;
+  text-align:center;
+  padding:20px;
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes fadeZoom{
+  from{opacity:0;transform:scale(0.85)}
+  to{opacity:1;transform:scale(1)}
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .home{
+    grid-template-columns:1fr;
+    text-align:center;
+  }
+  .home img{
+    justify-self:center;
+    margin-top:30px;
+  }
+  section{padding:110px 30px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div style="display:flex;align-items:center;">
+    <h2>Rooban R</h2>
+  </div>
+  <div style="display:flex;align-items:center;">
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <span id="theme-toggle">🌙</span>
+  </div>
+</nav>
+
+<!-- HOME -->
+<section id="home" class="home">
+  <div class="home-content">
+    <h1>Hi, I’m <span style="color:#c77dff;">Rooban R</span></h1>
+    <h3 style="margin-top:10px;">Frontend Developer & UI/UX Designer</h3>
+    <p style="margin-top:18px;">
+      I am a passionate frontend developer with a strong foundation in HTML, CSS,
+      and JavaScript, focused on building modern, responsive, and user-friendly
+      web applications with clean design and smooth interactions.
+    </p>
+    <p style="margin-top:12px;">
+      Currently pursuing my Bachelor’s degree in Information Technology, I am
+      continuously improving my skills and expanding toward full-stack
+      development to create scalable and impactful digital solutions.
+    </p>
+    <a href="#contact" class="btn">Get In Touch</a>
+  </div>
+  <img src="rooban.jpeg" alt="Rooban R">
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <h2>About Me</h2>
+  <p style="max-width:900px;margin:auto;text-align:center;">
+    I am Rooban R, an Information Technology undergraduate at Dr. N.G.P Arts and
+    Science College, Coimbatore, with a strong interest in frontend development
+    and UI/UX design. I enjoy designing clean interfaces and building responsive
+    web applications that offer intuitive and engaging user experiences.
+  </p>
+  <p style="max-width:900px;margin:20px auto;text-align:center;">
+    I have hands-on experience working with HTML, CSS, JavaScript, and basic React JS,
+    along with design and development tools such as Figma, Canva, GitHub, and
+    Visual Studio Code. I focus on writing clean code, maintaining consistent layouts,
+    and ensuring cross-device compatibility.
+  </p>
+  <p style="max-width:900px;margin:auto;text-align:center;">
+    Alongside frontend development, I am building my backend knowledge to grow as
+    a full-stack developer. I am a quick learner, adaptable, and actively seeking
+    internship or placement opportunities to apply my skills in real-world projects
+    and grow professionally.
+  </p>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <h2>Education</h2>
+  <div class="card" style="animation-delay:0.3s">
+    <h3>B.Sc Information Technology</h3>
+    <p>Dr. N.G.P Arts & Science College, Coimbatore</p>
+    <p>2023 – 2026 | 66.64%</p>
+  </div>
+  <div class="card" style="animation-delay:0.5s">
+    <h3>Higher Secondary (HSC)</h3>
+    <p>CRR Matric Higher Secondary School</p>
+    <p>2022 – 2023 | 69.83%</p>
+  </div>
+  <div class="card" style="animation-delay:0.7s">
+    <h3>SSLC</h3>
+    <p>CRR Matric Higher Secondary School</p>
+    <p>Passed</p>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <h2>Skills</h2>
+  <div class="skills">
+    <div class="skill" style="animation-delay:0.3s">HTML & CSS</div>
+    <div class="skill" style="animation-delay:0.5s">JavaScript (Basics)</div>
+    <div class="skill" style="animation-delay:0.7s">React JS (Basics)</div>
+    <div class="skill" style="animation-delay:0.9s">UI / UX Design</div>
+    <div class="skill" style="animation-delay:1.1s">Java (Basics)</div>
+    <div class="skill" style="animation-delay:1.3s">SQL (Basics)</div>
+    <div class="skill" style="animation-delay:1.5s">C / C++</div>
+    <div class="skill" style="animation-delay:1.7s">GitHub • Figma • Canva</div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <h2>Projects & Internship</h2>
+  <div class="card" style="animation-delay:0.3s">
+    <h3>Portfolio Website</h3>
+    <p>Personal responsive portfolio using HTML and CSS.</p>
+  </div>
+  <div class="card" style="animation-delay:0.5s">
+    <h3>Laptop Comparison & Rating System</h3>
+    <p>Web application for comparing laptop specifications and ratings.</p>
+  </div>
+  <div class="card" style="animation-delay:0.7s">
+    <h3>Game Zone Slot Booking System</h3>
+    <p>Online slot booking system for game centers with a smooth and user-friendly flow.</p>
+    <p><strong>Tech:</strong> HTML, CSS, JavaScript</p>
+  </div>
+  <div class="card" style="animation-delay:0.9s">
+    <h3>Internship – Accent Techno Soft (ATS)</h3>
+    <p>Full Stack Web Development Internship</p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <h2>Get In Touch</h2>
+  <p style="text-align:center;">📞 +91 6382342370</p>
+  <p style="text-align:center;">📧 231it048@gmail.com</p>
+  <p style="text-align:center;">📍 Ondipudur, Coimbatore</p>
+
+  <div class="qr-box">
+    <div class="qr-card" style="animation-delay:0.3s">
+      <h3>LinkedIn</h3>
+      <img src="rlin.jpeg" alt="LinkedIn QR">
+      <p>Scan to connect</p>
+    </div>
+    <div class="qr-card" style="animation-delay:0.5s">
+      <h3>GitHub</h3>
+      <img src="rgit.jpeg" alt="GitHub QR">
+      <p>Scan to view projects</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  © 2026 Rooban R | All Rights Reserved
+</footer>
+
+<!-- JS -->
+<script>
+// Scroll animations
+const sections = document.querySelectorAll("section");
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add("visible");
+    }
+  });
+},{threshold:0.2});
+sections.forEach(section => observer.observe(section));
+
+// Theme toggle
+const toggle = document.getElementById("theme-toggle");
+toggle.addEventListener("click", () => {
+  document.body.classList.toggle("light");
+  toggle.textContent = document.body.classList.contains("light") ? "☀️" : "🌙";
+});
+</script>
+
+</body>
+</html>
